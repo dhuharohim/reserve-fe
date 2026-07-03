@@ -1,0 +1,37 @@
+
+> @reserveflow/customer@0.1.0 build
+> next build
+
+▲ Next.js 16.2.10 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.0s
+  Running TypeScript ...
+  Finished TypeScript in 1367ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/11) ...
+  Generating static pages using 9 workers (2/11) 
+  Generating static pages using 9 workers (5/11) 
+  Generating static pages using 9 workers (8/11) 
+✓ Generating static pages using 9 workers (11/11) in 130ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /book
+├ ƒ /book/[slotId]
+├ ○ /checkout/cancelled
+├ ○ /checkout/success
+├ ○ /history
+├ ○ /login
+├ ○ /profile
+├ ○ /register
+├ ƒ /reservations/[slug]
+└ ○ /upcoming
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
