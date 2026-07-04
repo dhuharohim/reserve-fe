@@ -1,45 +1,79 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import { useGSAP } from "@gsap/react";
-import { EASE, gsap } from "./gsap";
+import { motion, useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
+import { fadeUp, staggerContainer, staggerItem } from "@/lib/motion";
 
-interface RevealProps {
+const VIEWPORT = { once: true, margin: "-8% 0px" } as const;
+
+/** Scroll-reveal a block (fade + rise). Respects reduced-motion. */
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
   children: ReactNode;
-  delay?: number;
   className?: string;
-  y?: number;
-}
-
-/** Scroll-triggered reveal: rises into place once, cinematic ease. */
-export function Reveal({ children, delay = 0, className, y = 40 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(ref.current, {
-          opacity: 0,
-          y,
-          duration: 1.1,
-          delay,
-          ease: EASE,
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 85%",
-            once: true,
-          },
-        });
-      });
-    },
-    { scope: ref },
-  );
+  delay?: number;
+}) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className}>{children}</div>;
 
   return (
-    <div ref={ref} className={className}>
+    <motion.div
+      className={className}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={VIEWPORT}
+      transition={{ delay }}
+    >
       {children}
-    </div>
+    </motion.div>
+  );
+}
+
+/** Stagger a set of children into view. Pair with <StaggerItem>. */
+export function Stagger({
+  children,
+  className,
+  stagger = 0.06,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  stagger?: number;
+  delay?: number;
+}) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className}>{children}</div>;
+
+  return (
+    <motion.div
+      className={className}
+      variants={staggerContainer(stagger, delay)}
+      initial="hidden"
+      whileInView="show"
+      viewport={VIEWPORT}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function StaggerItem({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className}>{children}</div>;
+
+  return (
+    <motion.div className={className} variants={staggerItem}>
+      {children}
+    </motion.div>
   );
 }

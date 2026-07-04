@@ -1,0 +1,931 @@
+{
+  "_meta": {
+    "note": "Static demo dataset for the customer app. Keys map to API responses: categories -> GET /categories, reservationTypes -> GET /reservation-types & /reservation-types/{slug}, slots -> GET /slots?reservation_type={slug}, membership -> GET /me/membership, user -> auth/me, reservations -> GET /reservations & /reservations/{uuid}.",
+    "as_of": "2026-07-04",
+    "currency": "USD"
+  },
+
+  "categories": [
+    { "key": "stays", "label": "Stays", "tagline": "Rooms with a view", "headline": "Somewhere worth waking up", "blurb": "Suites, villas and hideaways — booked in a breath.", "hero_image_url": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1600&q=75&auto=format&fit=crop", "icon": "bed", "color": "#A8873C", "types_count": 3 },
+    { "key": "dining", "label": "Dining", "tagline": "Tables worth booking", "headline": "The table is set", "blurb": "Tasting menus, corner tables and late-night counters.", "hero_image_url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=75&auto=format&fit=crop", "icon": "restaurant", "color": "#8C5A3B", "types_count": 5 },
+    { "key": "salon", "label": "Salon & Spa", "tagline": "Time for yourself", "headline": "In good hands", "blurb": "Cuts, colour, thermal circuits and quiet hours.", "hero_image_url": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=75&auto=format&fit=crop", "icon": "spa", "color": "#7A4A6D", "types_count": 2 },
+    { "key": "clinic", "label": "Clinics", "tagline": "Care, on schedule", "headline": "Seen, on time", "blurb": "Consultations and treatments with the specialists you want.", "hero_image_url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=75&auto=format&fit=crop", "icon": "medical_services", "color": "#2E6E7E", "types_count": 1 },
+    { "key": "workspace", "label": "Workspaces", "tagline": "Focus, on demand", "headline": "Room to think", "blurb": "Hot desks, studios and meeting rooms by the hour or day.", "hero_image_url": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=75&auto=format&fit=crop", "icon": "chair", "color": "#1E3A5F", "types_count": 2 },
+    { "key": "events", "label": "Live & Events", "tagline": "Nights to remember", "headline": "The lights go down", "blurb": "Concerts, screenings and one-off evenings.", "hero_image_url": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=75&auto=format&fit=crop", "icon": "confirmation_number", "color": "#5B4B8A", "types_count": 2 }
+  ],
+
+  "reservationTypes": [
+    {
+      "id": 1,
+      "name": "Deluxe King Suite",
+      "slug": "deluxe-king-suite",
+      "description": "A corner suite with a king bed, soaking tub and floor-to-ceiling harbour views.",
+      "tagline": "Harbour-view corner suite",
+      "about": "The Deluxe King Suite sits on the upper floors of Aurora House, wrapped in glass on two sides. A king bed dressed in linen, a deep soaking tub by the window, a walk-in rain shower, and a lounge corner made for slow mornings. Turndown at eight, coffee whenever you ring.",
+      "subtitle": "Aurora House · Harbour district",
+      "icon": "bed",
+      "color": "#A8873C",
+      "hero_image_url": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "stay",
+      "payment_mode": "pay_later",
+      "form_layout": "wizard",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$180 / night",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.05,
+      "rating": "4.9",
+      "reviews_count": 1284,
+      "highlights": ["Harbour-view corner windows", "King bed with premium linen", "Deep soaking tub", "Nespresso & complimentary minibar", "Late checkout on request"],
+      "facilities": [
+        { "icon": "wifi", "label": "Fast Wi-Fi" },
+        { "icon": "local_parking", "label": "Valet parking" },
+        { "icon": "fitness_center", "label": "24h gym" },
+        { "icon": "pool", "label": "Rooftop pool" },
+        { "icon": "room_service", "label": "Room service" },
+        { "icon": "pets", "label": "Pet friendly" }
+      ],
+      "terms": ["Free cancellation up to 48 hours before arrival", "Check-in from 3:00 PM, checkout by 11:00 AM", "Government ID required at check-in", "Maximum 2 guests per suite"],
+      "location": { "address": "12 Aurora Quay, Harbour District", "lat": 1.2847, "lng": 103.8501 },
+      "info": [
+        { "icon": "schedule", "label": "Check-in", "value": "3:00 PM" },
+        { "icon": "logout", "label": "Checkout", "value": "11:00 AM" },
+        { "icon": "king_bed", "label": "Bed", "value": "1 King" },
+        { "icon": "group", "label": "Sleeps", "value": "2 guests" }
+      ],
+      "category": { "key": "stays", "label": "Stays", "icon": "bed", "color": "#A8873C" },
+      "reviews": [
+        { "author_name": "Mara Lindqvist", "initial": "M", "rating": "5.0", "body": "The view at sunrise is unreal. Bed like a cloud, and the tub by the window sold me for life.", "when": "2 weeks ago" },
+        { "author_name": "Devin Osei", "initial": "D", "rating": "4.8", "body": "Impeccable service, late checkout was no problem at all. Will book the same suite again.", "when": "1 month ago" },
+        { "author_name": "Priya Raman", "initial": "P", "rating": "5.0", "body": "Quiet, spotless, and the coffee actually good. The little things are handled here.", "when": "1 month ago" }
+      ],
+      "search_filters": [
+        { "key": "dates", "label": "Dates", "component": "date_range", "source": null, "placeholder": "Check in — Check out", "settings": {}, "is_required": true },
+        { "key": "guests", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 2 }, "is_required": false }
+      ],
+      "pricing_rules": [
+        { "label": "Weekend rate", "adjustment": "delta", "amount": "40.00", "days": [5, 6], "time_start": null, "time_end": null, "date_start": null, "date_end": null, "min_party": null, "max_party": null, "priority": 10 }
+      ],
+      "custom_fields": [
+        { "key": "guests", "label": "Guests", "type": "number", "required": true, "step": 1, "options": [] },
+        { "key": "arrival_time", "label": "Estimated arrival", "type": "select", "required": false, "step": 1, "options": [{ "value": "afternoon", "label": "Afternoon (3–6 PM)" }, { "value": "evening", "label": "Evening (6–10 PM)" }, { "value": "late", "label": "Late (after 10 PM)" }] },
+        { "key": "requests", "label": "Special requests", "type": "textarea", "required": false, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Cliffside Villa",
+      "slug": "cliffside-villa",
+      "description": "A private two-bedroom villa on the cliff edge with a heated infinity pool.",
+      "tagline": "Private cliff-edge villa",
+      "about": "Perched where the land meets the sea, the Cliffside Villa is yours alone — two bedrooms, an open kitchen, and a heated infinity pool that spills toward the horizon. A private chef can be arranged; the sunsets come free.",
+      "subtitle": "Aurora House · Cape reserve",
+      "icon": "villa",
+      "color": "#A8873C",
+      "hero_image_url": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "stay",
+      "payment_mode": "deposit",
+      "form_layout": "wizard",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$420 / night",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.05,
+      "rating": "5.0",
+      "reviews_count": 342,
+      "highlights": ["Heated infinity pool", "Two ensuite bedrooms", "Private chef on request", "Unobstructed sea views", "Outdoor rain shower"],
+      "facilities": [
+        { "icon": "pool", "label": "Private pool" },
+        { "icon": "kitchen", "label": "Full kitchen" },
+        { "icon": "wifi", "label": "Fast Wi-Fi" },
+        { "icon": "local_parking", "label": "Private parking" },
+        { "icon": "deck", "label": "Sea terrace" }
+      ],
+      "terms": ["Free cancellation up to 7 days before arrival", "30% deposit at booking", "Two-night minimum on weekends"],
+      "location": { "address": "1 Cape Reserve Road", "lat": 1.2493, "lng": 103.8303 },
+      "info": [
+        { "icon": "schedule", "label": "Check-in", "value": "4:00 PM" },
+        { "icon": "king_bed", "label": "Bedrooms", "value": "2" },
+        { "icon": "group", "label": "Sleeps", "value": "4 guests" }
+      ],
+      "category": { "key": "stays", "label": "Stays", "icon": "bed", "color": "#A8873C" },
+      "reviews": [
+        { "author_name": "Elena Marchetti", "initial": "E", "rating": "5.0", "body": "Woke to nothing but sea and sky. The pool at night is pure magic.", "when": "3 weeks ago" }
+      ],
+      "search_filters": [
+        { "key": "dates", "label": "Dates", "component": "date_range", "source": null, "placeholder": "Check in — Check out", "settings": {}, "is_required": true },
+        { "key": "guests", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 4 }, "is_required": false }
+      ],
+      "custom_fields": [
+        { "key": "guests", "label": "Guests", "type": "number", "required": true, "step": 1, "options": [] },
+        { "key": "chef", "label": "Private chef", "type": "checkbox", "required": false, "step": 1, "options": [] },
+        { "key": "requests", "label": "Anything we should know?", "type": "textarea", "required": false, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Nord",
+      "slug": "nord",
+      "description": "A seven-course tasting menu at the chef's counter.",
+      "tagline": "Seven courses at the counter",
+      "about": "Nord is sixteen seats around an open kitchen. One menu each night — seven courses drawn from the coast and the season, poured with a matching flight if you like. Dinner takes about two and a half hours; give it the evening.",
+      "subtitle": "Nord · Old Town",
+      "icon": "restaurant",
+      "color": "#8C5A3B",
+      "hero_image_url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "table",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$120 / guest",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.1,
+      "rating": "4.8",
+      "reviews_count": 906,
+      "highlights": ["Seven-course seasonal menu", "Chef's counter seating", "Optional wine pairing", "Dietary needs accommodated"],
+      "facilities": [
+        { "icon": "local_bar", "label": "Wine pairing" },
+        { "icon": "restaurant_menu", "label": "Set menu" },
+        { "icon": "accessible", "label": "Step-free access" }
+      ],
+      "terms": ["Full prepayment secures the seating", "48-hour cancellation for a full refund", "Menu changes nightly with the market"],
+      "location": { "address": "8 Old Town Lane", "lat": 1.2833, "lng": 103.8447 },
+      "info": [
+        { "icon": "schedule", "label": "Seatings", "value": "6:00 & 8:30 PM" },
+        { "icon": "timer", "label": "Duration", "value": "~2.5 hrs" },
+        { "icon": "restaurant", "label": "Counter", "value": "16 seats" }
+      ],
+      "category": { "key": "dining", "label": "Dining", "icon": "restaurant", "color": "#8C5A3B" },
+      "reviews": [
+        { "author_name": "Tomas Berg", "initial": "T", "rating": "5.0", "body": "Every plate told a little story. The counter seat is the whole point — watch it happen.", "when": "1 week ago" },
+        { "author_name": "Ana Sofía", "initial": "A", "rating": "4.6", "body": "Beautiful food, generous pours. Bring an appetite and no rush.", "when": "3 weeks ago" }
+      ],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Pick a date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Seating", "component": "time_picker", "source": null, "placeholder": "Seating", "settings": { "options": [{ "value": "18:00", "label": "6:00 PM" }, { "value": "20:30", "label": "8:30 PM" }] }, "is_required": true },
+        { "key": "party", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 6 }, "is_required": true }
+      ],
+      "pricing_rules": [
+        { "label": "Wine pairing", "adjustment": "delta", "amount": "65.00", "days": null, "time_start": null, "time_end": null, "date_start": null, "date_end": null, "min_party": null, "max_party": null, "priority": 5 }
+      ],
+      "custom_fields": [
+        { "key": "party_size", "label": "Party size", "type": "number", "required": true, "step": 1, "options": [] },
+        { "key": "pairing", "label": "Wine pairing (+$65)", "type": "checkbox", "required": false, "step": 1, "options": [] },
+        { "key": "dietary", "label": "Dietary requirements", "type": "multiselect", "required": false, "step": 1, "options": [{ "value": "vegetarian", "label": "Vegetarian" }, { "value": "vegan", "label": "Vegan" }, { "value": "gluten_free", "label": "Gluten-free" }, { "value": "shellfish", "label": "No shellfish" }] },
+        { "key": "occasion", "label": "Occasion", "type": "text", "required": false, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Dr Amara Reyes",
+      "slug": "dr-amara-reyes",
+      "description": "General consultation with an integrative physician.",
+      "tagline": "Integrative medicine consultation",
+      "about": "Dr Amara Reyes takes an unhurried, whole-picture approach — forty-five minutes to actually talk, examine and plan. New patients welcome; bring any recent results and a list of what's on your mind.",
+      "subtitle": "Lumière Care · Wellness wing",
+      "icon": "medical_services",
+      "color": "#2E6E7E",
+      "hero_image_url": "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "appointment",
+      "payment_mode": "pay_later",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$90",
+      "tax_rate": 0.0,
+      "service_charge_rate": 0.0,
+      "rating": "4.9",
+      "reviews_count": 421,
+      "highlights": ["45-minute consultation", "New patients welcome", "Same-week availability", "Follow-up plan included"],
+      "facilities": [
+        { "icon": "accessible", "label": "Step-free" },
+        { "icon": "local_parking", "label": "Parking" },
+        { "icon": "translate", "label": "EN / ES" }
+      ],
+      "terms": ["Cancel up to 24 hours before at no charge", "Please arrive 10 minutes early", "Bring recent test results if available"],
+      "location": { "address": "24 Lumière Avenue", "lat": 1.3007, "lng": 103.8384 },
+      "info": [
+        { "icon": "timer", "label": "Duration", "value": "45 min" },
+        { "icon": "person", "label": "With", "value": "Dr A. Reyes" }
+      ],
+      "category": { "key": "clinic", "label": "Clinics", "icon": "medical_services", "color": "#2E6E7E" },
+      "reviews": [
+        { "author_name": "Grace Bello", "initial": "G", "rating": "5.0", "body": "She listened — properly. Left with an actual plan for the first time.", "when": "5 days ago" }
+      ],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Pick a date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true }
+      ],
+      "custom_fields": [
+        { "key": "new_patient", "label": "New patient?", "type": "checkbox", "required": false, "step": 1, "options": [] },
+        { "key": "reason", "label": "Reason for visit", "type": "textarea", "required": true, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Maison Coif",
+      "slug": "maison-coif",
+      "description": "Cut and finish with a senior stylist.",
+      "tagline": "Cut, colour & finish",
+      "about": "A calm room, a good chair, and a stylist who remembers how you like it. Consultation, cut, and a proper blow-dry — colour if you're feeling it. Herbal tea while you settle in.",
+      "subtitle": "Maison Coif · Rue Blanc",
+      "icon": "content_cut",
+      "color": "#7A4A6D",
+      "hero_image_url": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "appointment",
+      "payment_mode": "pay_later",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$75",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.0,
+      "rating": "4.7",
+      "reviews_count": 638,
+      "highlights": ["Senior stylist", "Consultation included", "Complimentary herbal tea", "Colour available"],
+      "facilities": [
+        { "icon": "local_cafe", "label": "Tea bar" },
+        { "icon": "wifi", "label": "Wi-Fi" }
+      ],
+      "terms": ["Cancel up to 12 hours before at no charge", "Colour services take longer — allow extra time"],
+      "location": { "address": "5 Rue Blanc", "lat": 1.2921, "lng": 103.8519 },
+      "info": [
+        { "icon": "timer", "label": "Duration", "value": "60 min" },
+        { "icon": "person", "label": "Stylist", "value": "Senior" }
+      ],
+      "category": { "key": "salon", "label": "Salon & Spa", "icon": "spa", "color": "#7A4A6D" },
+      "reviews": [
+        { "author_name": "Noor Haddad", "initial": "N", "rating": "5.0", "body": "Best cut I've had in years. They actually listened to 'just a trim'.", "when": "2 weeks ago" }
+      ],
+      "search_filters": [
+        { "key": "service", "label": "Service", "component": "select", "source": null, "placeholder": "Service", "settings": { "options": [{ "value": "cut", "label": "Cut & finish" }, { "value": "colour", "label": "Cut & colour" }, { "value": "blowdry", "label": "Blow-dry" }] }, "is_required": true },
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true }
+      ],
+      "custom_fields": [
+        { "key": "service", "label": "Service", "type": "select", "required": true, "step": 1, "options": [{ "value": "cut", "label": "Cut & finish" }, { "value": "colour", "label": "Cut & colour" }, { "value": "blowdry", "label": "Blow-dry" }] },
+        { "key": "notes", "label": "Notes for your stylist", "type": "textarea", "required": false, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Thermal Spa Circuit",
+      "slug": "thermal-spa",
+      "description": "Two-hour thermal bathing circuit.",
+      "tagline": "Two hours of thermal calm",
+      "about": "Sauna, steam, cold plunge, and a warm relaxation room — flow through the circuit at your own pace over two hours. Robes, slippers and tea provided. Leave your phone in the locker.",
+      "subtitle": "Lumière Care · Thermal wing",
+      "icon": "hot_tub",
+      "color": "#7A4A6D",
+      "hero_image_url": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "appointment",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$90",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.0,
+      "rating": "4.8",
+      "reviews_count": 512,
+      "highlights": ["Sauna, steam & cold plunge", "Two-hour access", "Robe & slippers included", "Relaxation room"],
+      "facilities": [
+        { "icon": "hot_tub", "label": "Thermal pools" },
+        { "icon": "checkroom", "label": "Robe & locker" },
+        { "icon": "local_cafe", "label": "Tea lounge" }
+      ],
+      "terms": ["Full prepayment secures your slot", "Cancel up to 24 hours before for a full refund", "Ages 16+"],
+      "location": { "address": "24 Lumière Avenue", "lat": 1.3007, "lng": 103.8384 },
+      "info": [
+        { "icon": "timer", "label": "Access", "value": "2 hours" },
+        { "icon": "group", "label": "Circuit", "value": "Shared" }
+      ],
+      "category": { "key": "salon", "label": "Salon & Spa", "icon": "spa", "color": "#7A4A6D" },
+      "reviews": [
+        { "author_name": "Ivan Petrov", "initial": "I", "rating": "5.0", "body": "Melted a whole week of stress. The cold plunge is worth the courage.", "when": "1 month ago" }
+      ],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true },
+        { "key": "guests", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 4 }, "is_required": false }
+      ],
+      "custom_fields": [
+        { "key": "guests", "label": "Guests", "type": "number", "required": true, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Hot Desk Day Pass",
+      "slug": "hot-desk-day-pass",
+      "description": "A full day at a shared desk with everything you need.",
+      "tagline": "A desk for the day",
+      "about": "Drop in, plug in, get it done. A full day at a shared desk with fast Wi-Fi, bottomless coffee, phone booths for calls, and a quiet floor when you need it. Doors from 8 AM to 8 PM.",
+      "subtitle": "Nomad Spaces · Central",
+      "icon": "chair",
+      "color": "#1E3A5F",
+      "hero_image_url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "rental",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$25 / day",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.0,
+      "rating": "4.6",
+      "reviews_count": 289,
+      "highlights": ["Full-day access", "Fast Wi-Fi", "Bottomless coffee", "Phone booths", "Quiet floor"],
+      "facilities": [
+        { "icon": "wifi", "label": "Fast Wi-Fi" },
+        { "icon": "local_cafe", "label": "Coffee bar" },
+        { "icon": "print", "label": "Printing" },
+        { "icon": "meeting_room", "label": "Phone booths" }
+      ],
+      "terms": ["Prepaid, non-refundable within 12 hours of start", "One day pass per person"],
+      "location": { "address": "40 Central Boulevard", "lat": 1.2812, "lng": 103.8583 },
+      "info": [
+        { "icon": "schedule", "label": "Hours", "value": "8 AM – 8 PM" },
+        { "icon": "chair", "label": "Seat", "value": "Shared desk" }
+      ],
+      "category": { "key": "workspace", "label": "Workspaces", "icon": "chair", "color": "#1E3A5F" },
+      "reviews": [
+        { "author_name": "Leo Tanaka", "initial": "L", "rating": "4.7", "body": "Reliable Wi-Fi and good coffee. Booths are a lifesaver for calls.", "when": "2 weeks ago" }
+      ],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "duration", "label": "Duration", "component": "duration_picker", "source": null, "placeholder": "Duration", "settings": { "options": [{ "value": "half", "label": "Half day" }, { "value": "full", "label": "Full day" }] }, "is_required": false }
+      ],
+      "custom_fields": [
+        { "key": "company", "label": "Company (optional)", "type": "text", "required": false, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Meeting Room",
+      "slug": "meeting-room",
+      "description": "A six-seat meeting room by the hour.",
+      "tagline": "Six seats, by the hour",
+      "about": "A bright meeting room for six, with a large screen, whiteboard wall and a door that actually closes. Book by the hour; coffee and water are on the house.",
+      "subtitle": "Nomad Spaces · Central",
+      "icon": "groups",
+      "color": "#1E3A5F",
+      "hero_image_url": "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "rental",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$25 / hour",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.0,
+      "rating": "4.5",
+      "reviews_count": 147,
+      "highlights": ["Seats six", "Large screen & whiteboard", "Coffee & water included"],
+      "facilities": [
+        { "icon": "tv", "label": "Screen" },
+        { "icon": "edit_note", "label": "Whiteboard" },
+        { "icon": "wifi", "label": "Wi-Fi" }
+      ],
+      "terms": ["Book in one-hour blocks", "Cancel up to 2 hours before for a refund"],
+      "location": { "address": "40 Central Boulevard", "lat": 1.2812, "lng": 103.8583 },
+      "info": [
+        { "icon": "group", "label": "Seats", "value": "6" },
+        { "icon": "timer", "label": "Block", "value": "1 hour" }
+      ],
+      "category": { "key": "workspace", "label": "Workspaces", "icon": "chair", "color": "#1E3A5F" },
+      "reviews": [],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Start time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true },
+        { "key": "duration", "label": "Hours", "component": "duration_picker", "source": null, "placeholder": "Hours", "settings": { "options": [{ "value": "1", "label": "1 hour" }, { "value": "2", "label": "2 hours" }, { "value": "3", "label": "3 hours" }] }, "is_required": true }
+      ],
+      "custom_fields": []
+    },
+    {
+      "id": 9,
+      "name": "Aurora Symphonic",
+      "slug": "aurora-symphonic",
+      "description": "An evening with the Aurora Symphonic Orchestra.",
+      "tagline": "One night, full orchestra",
+      "about": "The Aurora Symphonic returns to the Grand Hall for one night — a programme of romantic favourites and a new commission, under the resident conductor. Doors at 7, curtain at 7:30. Dress: whatever makes you feel wonderful.",
+      "subtitle": "Grand Hall · Arts quarter",
+      "icon": "music_note",
+      "color": "#5B4B8A",
+      "hero_image_url": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1800&q=75&auto=format&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=1400&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1400&q=75&auto=format&fit=crop"
+      ],
+      "reservation_mode": "event",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": false,
+      "allow_cancellation": false,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$65",
+      "tax_rate": 0.0,
+      "service_charge_rate": 0.08,
+      "rating": "4.9",
+      "reviews_count": 733,
+      "highlights": ["Full symphony orchestra", "New commission premiere", "Grand Hall acoustics", "Tiered seating"],
+      "facilities": [
+        { "icon": "local_bar", "label": "Interval bar" },
+        { "icon": "accessible", "label": "Accessible seating" },
+        { "icon": "checkroom", "label": "Cloakroom" }
+      ],
+      "terms": ["Tickets are non-refundable", "Latecomers seated at a suitable break", "Please silence devices"],
+      "location": { "address": "1 Grand Hall Plaza", "lat": 1.2905, "lng": 103.8562 },
+      "info": [
+        { "icon": "schedule", "label": "Doors", "value": "7:00 PM" },
+        { "icon": "music_note", "label": "Curtain", "value": "7:30 PM" }
+      ],
+      "category": { "key": "events", "label": "Live & Events", "icon": "confirmation_number", "color": "#5B4B8A" },
+      "reviews": [
+        { "author_name": "Hana Kim", "initial": "H", "rating": "5.0", "body": "Goosebumps from the first bar. The new piece was a revelation.", "when": "6 days ago" }
+      ],
+      "search_filters": [
+        { "key": "tier", "label": "Seating tier", "component": "select", "source": null, "placeholder": "Tier", "settings": { "options": [{ "value": "stalls", "label": "Stalls" }, { "value": "circle", "label": "Grand Circle" }, { "value": "balcony", "label": "Balcony" }] }, "is_required": true }
+      ],
+      "pricing_rules": [
+        { "label": "Grand Circle", "adjustment": "delta", "amount": "40.00", "days": null, "time_start": null, "time_end": null, "date_start": null, "date_end": null, "min_party": null, "max_party": null, "priority": 5 }
+      ],
+      "custom_fields": [
+        { "key": "tier", "label": "Seating tier", "type": "select", "required": true, "step": 1, "options": [{ "value": "stalls", "label": "Stalls ($65)" }, { "value": "circle", "label": "Grand Circle ($105)" }, { "value": "balcony", "label": "Balcony ($45)" }] },
+        { "key": "tickets", "label": "Tickets", "type": "number", "required": true, "step": 1, "options": [] }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Sora",
+      "slug": "sora",
+      "description": "Rooftop small plates and cocktails under the sky.",
+      "tagline": "Small plates, big sky",
+      "about": "Sora sits on the 30th floor — a wraparound terrace, a long marble bar, and a menu of small plates built for sharing. Come for the sunset hour; stay for the skyline.",
+      "subtitle": "Sora · Rooftop, Aurora House",
+      "icon": "restaurant",
+      "color": "#8C5A3B",
+      "hero_image_url": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1800&q=75&auto=format&fit=crop",
+      "gallery": ["https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=75&auto=format&fit=crop", "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1400&q=75&auto=format&fit=crop"],
+      "reservation_mode": "table",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$95 / guest",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.1,
+      "rating": "4.7",
+      "reviews_count": 512,
+      "highlights": ["30th-floor terrace", "Sunset seatings", "Signature cocktails", "Shared small plates"],
+      "facilities": [{ "icon": "local_bar", "label": "Cocktail bar" }, { "icon": "deck", "label": "Terrace" }, { "icon": "ac_unit", "label": "Climate seating" }],
+      "terms": ["Prepaid seating", "48-hour cancellation for a full refund", "Smart-casual dress"],
+      "location": { "address": "12 Aurora Quay, Level 30", "lat": 1.2847, "lng": 103.8501 },
+      "info": [{ "icon": "schedule", "label": "Seatings", "value": "6:00 & 8:30 PM" }, { "icon": "timer", "label": "Table", "value": "2 hrs" }],
+      "category": { "key": "dining", "label": "Dining", "icon": "restaurant", "color": "#8C5A3B" },
+      "reviews": [{ "author_name": "Camille Dubois", "initial": "C", "rating": "5.0", "body": "The view alone is worth it — the burrata sealed the deal.", "when": "1 week ago" }],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Seating", "component": "time_picker", "source": null, "placeholder": "Seating", "settings": { "options": [{ "value": "18:00", "label": "6:00 PM" }, { "value": "20:30", "label": "8:30 PM" }] }, "is_required": true },
+        { "key": "party", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 8 }, "is_required": true }
+      ],
+      "custom_fields": [
+        { "key": "party_size", "label": "Party size", "type": "number", "required": true, "step": 1, "options": [] },
+        { "key": "seating", "label": "Seating", "type": "select", "required": false, "step": 1, "options": [{ "value": "terrace", "label": "Terrace" }, { "value": "bar", "label": "Bar" }, { "value": "indoor", "label": "Indoor" }] }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "The Larder",
+      "slug": "the-larder",
+      "description": "All-day brunch and a very good coffee.",
+      "tagline": "Brunch, all day",
+      "about": "A sunny corner room that does brunch from open to close — eggs any way, fresh pastries, and a filter coffee worth crossing town for. Walk-ins welcome, but a table's nicer.",
+      "subtitle": "The Larder · Old Town",
+      "icon": "brunch_dining",
+      "color": "#8C5A3B",
+      "hero_image_url": "https://images.unsplash.com/photo-1533920379810-6bedac9e31f8?w=1800&q=75&auto=format&fit=crop",
+      "gallery": ["https://images.unsplash.com/photo-1533920379810-6bedac9e31f8?w=1400&q=75&auto=format&fit=crop", "https://images.unsplash.com/photo-1481931098730-318b6f776db0?w=1400&q=75&auto=format&fit=crop"],
+      "reservation_mode": "table",
+      "payment_mode": "pay_later",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "avg",
+      "price_display": "$28 / guest",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.05,
+      "rating": "4.6",
+      "reviews_count": 741,
+      "highlights": ["All-day brunch", "Specialty coffee", "Fresh pastries", "Sunny room"],
+      "facilities": [{ "icon": "local_cafe", "label": "Coffee bar" }, { "icon": "wifi", "label": "Wi-Fi" }, { "icon": "stroller", "label": "Family friendly" }],
+      "terms": ["Hold up to 15 minutes past booking", "Cancel any time before your slot"],
+      "location": { "address": "3 Old Town Lane", "lat": 1.2835, "lng": 103.8449 },
+      "info": [{ "icon": "schedule", "label": "Hours", "value": "8 AM – 4 PM" }, { "icon": "timer", "label": "Table", "value": "90 min" }],
+      "category": { "key": "dining", "label": "Dining", "icon": "restaurant", "color": "#8C5A3B" },
+      "reviews": [{ "author_name": "Sam O'Neill", "initial": "S", "rating": "4.5", "body": "Best flat white in the district and the ricotta hotcakes are unreal.", "when": "4 days ago" }],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true },
+        { "key": "party", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 6 }, "is_required": true }
+      ],
+      "custom_fields": [{ "key": "party_size", "label": "Party size", "type": "number", "required": true, "step": 1, "options": [] }, { "key": "highchair", "label": "Need a highchair?", "type": "checkbox", "required": false, "step": 1, "options": [] }]
+    },
+    {
+      "id": 12,
+      "name": "Kettle & Co",
+      "slug": "kettle-and-co",
+      "description": "A ten-seat ramen counter.",
+      "tagline": "Ten seats, one bowl",
+      "about": "Ten stools, a steaming pass, and a bowl of ramen that takes two days to make. Order at the counter, slurp, and make room for the next. No reservations for more than four.",
+      "subtitle": "Kettle & Co · Night market",
+      "icon": "ramen_dining",
+      "color": "#8C5A3B",
+      "hero_image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1800&q=75&auto=format&fit=crop",
+      "gallery": ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1400&q=75&auto=format&fit=crop"],
+      "reservation_mode": "table",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": false,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$22 / guest",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.0,
+      "rating": "4.8",
+      "reviews_count": 1103,
+      "highlights": ["Two-day broth", "Counter seating", "Vegetarian option", "Quick turnaround"],
+      "facilities": [{ "icon": "restaurant", "label": "Counter" }, { "icon": "eco", "label": "Veg option" }],
+      "terms": ["Prepaid seat", "Max party of 4", "Cancel up to 2 hours before"],
+      "location": { "address": "Stall 14, Night Market", "lat": 1.2801, "lng": 103.8465 },
+      "info": [{ "icon": "schedule", "label": "Open", "value": "5 – 11 PM" }, { "icon": "group", "label": "Counter", "value": "10 seats" }],
+      "category": { "key": "dining", "label": "Dining", "icon": "restaurant", "color": "#8C5A3B" },
+      "reviews": [{ "author_name": "Yuki Mori", "initial": "Y", "rating": "5.0", "body": "Worth the queue. The tonkotsu is the real thing.", "when": "2 weeks ago" }],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true },
+        { "key": "party", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 4 }, "is_required": true }
+      ],
+      "custom_fields": [{ "key": "party_size", "label": "Party size", "type": "number", "required": true, "step": 1, "options": [] }, { "key": "broth", "label": "Broth", "type": "select", "required": true, "step": 1, "options": [{ "value": "tonkotsu", "label": "Tonkotsu" }, { "value": "shoyu", "label": "Shoyu" }, { "value": "veg", "label": "Vegetable" }] }]
+    },
+    {
+      "id": 13,
+      "name": "Vero",
+      "slug": "vero",
+      "description": "A neighbourhood trattoria with handmade pasta.",
+      "tagline": "Handmade, house-poured",
+      "about": "Vero is the trattoria you wish was on your corner — pasta rolled that morning, a short list of natural wines, and a room that hums by eight. Bring people you like.",
+      "subtitle": "Vero · Riverside",
+      "icon": "dinner_dining",
+      "color": "#8C5A3B",
+      "hero_image_url": "https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=1800&q=75&auto=format&fit=crop",
+      "gallery": ["https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=1400&q=75&auto=format&fit=crop", "https://images.unsplash.com/photo-1533777324565-a040eb52facd?w=1400&q=75&auto=format&fit=crop"],
+      "reservation_mode": "table",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "avg",
+      "price_display": "$60 / guest",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.1,
+      "rating": "4.7",
+      "reviews_count": 598,
+      "highlights": ["Handmade pasta", "Natural wine list", "Warm room", "Group tables"],
+      "facilities": [{ "icon": "local_bar", "label": "Wine list" }, { "icon": "groups", "label": "Group tables" }],
+      "terms": ["$20 hold per seat, credited to your bill", "24-hour cancellation"],
+      "location": { "address": "9 Riverside Walk", "lat": 1.2867, "lng": 103.8512 },
+      "info": [{ "icon": "schedule", "label": "Dinner", "value": "5:30 – 11 PM" }, { "icon": "timer", "label": "Table", "value": "2 hrs" }],
+      "category": { "key": "dining", "label": "Dining", "icon": "restaurant", "color": "#8C5A3B" },
+      "reviews": [{ "author_name": "Marco Ferro", "initial": "M", "rating": "5.0", "body": "Tasted like Sunday at nonna's. The cacio e pepe, order it.", "when": "1 week ago" }],
+      "search_filters": [
+        { "key": "date", "label": "Date", "component": "date_picker", "source": null, "placeholder": "Date", "settings": {}, "is_required": true },
+        { "key": "time", "label": "Time", "component": "time_picker", "source": null, "placeholder": "Time", "settings": {}, "is_required": true },
+        { "key": "party", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 10 }, "is_required": true }
+      ],
+      "custom_fields": [{ "key": "party_size", "label": "Party size", "type": "number", "required": true, "step": 1, "options": [] }, { "key": "occasion", "label": "Occasion", "type": "text", "required": false, "step": 1, "options": [] }]
+    },
+    {
+      "id": 14,
+      "name": "Garden Loft",
+      "slug": "garden-loft",
+      "description": "A plant-filled loft with a private terrace.",
+      "tagline": "A loft that breathes",
+      "about": "Tucked above a courtyard, the Garden Loft is all greenery and light — a queen bed, a little kitchen, and a private terrace strung with lights. Slow coffee, slower mornings.",
+      "subtitle": "Aurora House · Courtyard",
+      "icon": "cottage",
+      "color": "#A8873C",
+      "hero_image_url": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1800&q=75&auto=format&fit=crop",
+      "gallery": ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1400&q=75&auto=format&fit=crop", "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400&q=75&auto=format&fit=crop"],
+      "reservation_mode": "stay",
+      "payment_mode": "pay_later",
+      "form_layout": "wizard",
+      "allow_reschedule": true,
+      "allow_cancellation": true,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$150 / night",
+      "tax_rate": 0.08,
+      "service_charge_rate": 0.05,
+      "rating": "4.8",
+      "reviews_count": 456,
+      "highlights": ["Private terrace", "Queen bed", "Kitchenette", "Courtyard quiet"],
+      "facilities": [{ "icon": "wifi", "label": "Wi-Fi" }, { "icon": "kitchen", "label": "Kitchenette" }, { "icon": "deck", "label": "Terrace" }, { "icon": "pets", "label": "Pet friendly" }],
+      "terms": ["Free cancellation up to 48 hours before", "Check-in 3 PM, checkout 11 AM"],
+      "location": { "address": "12 Aurora Quay, Courtyard", "lat": 1.2846, "lng": 103.8503 },
+      "info": [{ "icon": "schedule", "label": "Check-in", "value": "3:00 PM" }, { "icon": "king_bed", "label": "Bed", "value": "1 Queen" }, { "icon": "group", "label": "Sleeps", "value": "2" }],
+      "category": { "key": "stays", "label": "Stays", "icon": "bed", "color": "#A8873C" },
+      "reviews": [{ "author_name": "Rosa Kelly", "initial": "R", "rating": "5.0", "body": "The terrace at night, string lights and plants everywhere. Didn't want to leave.", "when": "2 weeks ago" }],
+      "search_filters": [
+        { "key": "dates", "label": "Dates", "component": "date_range", "source": null, "placeholder": "Check in — Check out", "settings": {}, "is_required": true },
+        { "key": "guests", "label": "Guests", "component": "guest_picker", "source": null, "placeholder": "Guests", "settings": { "min": 1, "max": 2 }, "is_required": false }
+      ],
+      "custom_fields": [{ "key": "guests", "label": "Guests", "type": "number", "required": true, "step": 1, "options": [] }, { "key": "requests", "label": "Special requests", "type": "textarea", "required": false, "step": 1, "options": [] }]
+    },
+    {
+      "id": 15,
+      "name": "Midnight Cinema",
+      "slug": "midnight-cinema",
+      "description": "A late-night screening under the stars.",
+      "tagline": "Reels after dark",
+      "about": "A rooftop screen, deck chairs, blankets, and a cult classic that starts when the city goes quiet. Popcorn included; bring someone to share the blanket.",
+      "subtitle": "Grand Hall · Rooftop",
+      "icon": "theaters",
+      "color": "#5B4B8A",
+      "hero_image_url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1800&q=75&auto=format&fit=crop",
+      "gallery": ["https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1400&q=75&auto=format&fit=crop"],
+      "reservation_mode": "event",
+      "payment_mode": "prepaid",
+      "form_layout": "single",
+      "allow_reschedule": false,
+      "allow_cancellation": false,
+      "is_active": true,
+      "price_caption": "from",
+      "price_display": "$18",
+      "tax_rate": 0.0,
+      "service_charge_rate": 0.05,
+      "rating": "4.7",
+      "reviews_count": 388,
+      "highlights": ["Rooftop screen", "Deck chairs & blankets", "Popcorn included", "Cult classics"],
+      "facilities": [{ "icon": "local_bar", "label": "Bar cart" }, { "icon": "weekend", "label": "Deck chairs" }],
+      "terms": ["Tickets are non-refundable", "Runs rain or shine (covered)"],
+      "location": { "address": "1 Grand Hall Plaza, Rooftop", "lat": 1.2905, "lng": 103.8562 },
+      "info": [{ "icon": "schedule", "label": "Doors", "value": "11:00 PM" }, { "icon": "movie", "label": "Start", "value": "11:30 PM" }],
+      "category": { "key": "events", "label": "Live & Events", "icon": "confirmation_number", "color": "#5B4B8A" },
+      "reviews": [{ "author_name": "Théo Blanc", "initial": "T", "rating": "5.0", "body": "Blade Runner on a rooftop at midnight. Doesn't get better.", "when": "5 days ago" }],
+      "search_filters": [
+        { "key": "tickets", "label": "Tickets", "component": "guest_picker", "source": null, "placeholder": "Tickets", "settings": { "min": 1, "max": 6 }, "is_required": true }
+      ],
+      "custom_fields": [{ "key": "tickets", "label": "Tickets", "type": "number", "required": true, "step": 1, "options": [] }]
+    }
+  ],
+
+  "slots": {
+    "deluxe-king-suite": [
+      { "id": 101, "reservation_type_id": 1, "starts_at": "2026-07-08T15:00:00Z", "ends_at": "2026-07-09T11:00:00Z", "capacity": 4, "remaining_capacity": 2, "is_fully_booked": false, "price": "180.00", "base_price": "180.00", "status": "open", "resource": { "id": 11, "name": "Suite 1802", "category": "room" } },
+      { "id": 102, "reservation_type_id": 1, "starts_at": "2026-07-11T15:00:00Z", "ends_at": "2026-07-12T11:00:00Z", "capacity": 4, "remaining_capacity": 3, "is_fully_booked": false, "price": "220.00", "base_price": "180.00", "status": "open", "resource": { "id": 11, "name": "Suite 1802", "category": "room" } },
+      { "id": 103, "reservation_type_id": 1, "starts_at": "2026-07-15T15:00:00Z", "ends_at": "2026-07-16T11:00:00Z", "capacity": 4, "remaining_capacity": 1, "is_fully_booked": false, "price": "180.00", "base_price": "180.00", "status": "open", "resource": { "id": 12, "name": "Suite 1804", "category": "room" } },
+      { "id": 104, "reservation_type_id": 1, "starts_at": "2026-07-18T15:00:00Z", "ends_at": "2026-07-19T11:00:00Z", "capacity": 4, "remaining_capacity": 4, "is_fully_booked": false, "price": "220.00", "base_price": "180.00", "status": "open", "resource": { "id": 12, "name": "Suite 1804", "category": "room" } }
+    ],
+    "cliffside-villa": [
+      { "id": 121, "reservation_type_id": 2, "starts_at": "2026-07-10T16:00:00Z", "ends_at": "2026-07-12T11:00:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "420.00", "base_price": "420.00", "status": "open", "resource": { "id": 21, "name": "The Villa", "category": "villa" } },
+      { "id": 122, "reservation_type_id": 2, "starts_at": "2026-07-17T16:00:00Z", "ends_at": "2026-07-19T11:00:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "460.00", "base_price": "420.00", "status": "open", "resource": { "id": 21, "name": "The Villa", "category": "villa" } }
+    ],
+    "nord": [
+      { "id": 141, "reservation_type_id": 3, "starts_at": "2026-07-06T18:00:00Z", "ends_at": "2026-07-06T20:30:00Z", "capacity": 16, "remaining_capacity": 6, "is_fully_booked": false, "price": "120.00", "base_price": "120.00", "status": "open", "resource": { "id": 31, "name": "The Counter", "category": "table" } },
+      { "id": 142, "reservation_type_id": 3, "starts_at": "2026-07-06T20:30:00Z", "ends_at": "2026-07-06T23:00:00Z", "capacity": 16, "remaining_capacity": 2, "is_fully_booked": false, "price": "120.00", "base_price": "120.00", "status": "open", "resource": { "id": 31, "name": "The Counter", "category": "table" } },
+      { "id": 143, "reservation_type_id": 3, "starts_at": "2026-07-09T18:00:00Z", "ends_at": "2026-07-09T20:30:00Z", "capacity": 16, "remaining_capacity": 10, "is_fully_booked": false, "price": "120.00", "base_price": "120.00", "status": "open", "resource": { "id": 31, "name": "The Counter", "category": "table" } },
+      { "id": 144, "reservation_type_id": 3, "starts_at": "2026-07-12T20:30:00Z", "ends_at": "2026-07-12T23:00:00Z", "capacity": 16, "remaining_capacity": 0, "is_fully_booked": true, "price": "120.00", "base_price": "120.00", "status": "open", "resource": { "id": 31, "name": "The Counter", "category": "table" } }
+    ],
+    "dr-amara-reyes": [
+      { "id": 161, "reservation_type_id": 4, "starts_at": "2026-07-06T09:30:00Z", "ends_at": "2026-07-06T10:15:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "90.00", "base_price": "90.00", "status": "open", "resource": { "id": 41, "name": "Dr A. Reyes", "category": "practitioner" } },
+      { "id": 162, "reservation_type_id": 4, "starts_at": "2026-07-06T11:00:00Z", "ends_at": "2026-07-06T11:45:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "90.00", "base_price": "90.00", "status": "open", "resource": { "id": 41, "name": "Dr A. Reyes", "category": "practitioner" } },
+      { "id": 163, "reservation_type_id": 4, "starts_at": "2026-07-07T14:00:00Z", "ends_at": "2026-07-07T14:45:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "90.00", "base_price": "90.00", "status": "open", "resource": { "id": 41, "name": "Dr A. Reyes", "category": "practitioner" } }
+    ],
+    "maison-coif": [
+      { "id": 181, "reservation_type_id": 5, "starts_at": "2026-07-05T10:00:00Z", "ends_at": "2026-07-05T11:00:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "75.00", "base_price": "75.00", "status": "open", "resource": { "id": 51, "name": "Chair 2", "category": "stylist" } },
+      { "id": 182, "reservation_type_id": 5, "starts_at": "2026-07-07T13:00:00Z", "ends_at": "2026-07-07T14:00:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "75.00", "base_price": "75.00", "status": "open", "resource": { "id": 51, "name": "Chair 2", "category": "stylist" } }
+    ],
+    "thermal-spa": [
+      { "id": 201, "reservation_type_id": 6, "starts_at": "2026-07-06T13:00:00Z", "ends_at": "2026-07-06T15:00:00Z", "capacity": 8, "remaining_capacity": 5, "is_fully_booked": false, "price": "90.00", "base_price": "90.00", "status": "open", "resource": { "id": 61, "name": "Thermal Circuit", "category": "spa" } },
+      { "id": 202, "reservation_type_id": 6, "starts_at": "2026-07-08T16:00:00Z", "ends_at": "2026-07-08T18:00:00Z", "capacity": 8, "remaining_capacity": 8, "is_fully_booked": false, "price": "90.00", "base_price": "90.00", "status": "open", "resource": { "id": 61, "name": "Thermal Circuit", "category": "spa" } }
+    ],
+    "hot-desk-day-pass": [
+      { "id": 221, "reservation_type_id": 7, "starts_at": "2026-07-05T08:00:00Z", "ends_at": "2026-07-05T20:00:00Z", "capacity": 40, "remaining_capacity": 22, "is_fully_booked": false, "price": "25.00", "base_price": "25.00", "status": "open", "resource": { "id": 71, "name": "Open Floor", "category": "desk" } },
+      { "id": 222, "reservation_type_id": 7, "starts_at": "2026-07-06T08:00:00Z", "ends_at": "2026-07-06T20:00:00Z", "capacity": 40, "remaining_capacity": 31, "is_fully_booked": false, "price": "25.00", "base_price": "25.00", "status": "open", "resource": { "id": 71, "name": "Open Floor", "category": "desk" } }
+    ],
+    "meeting-room": [
+      { "id": 241, "reservation_type_id": 8, "starts_at": "2026-07-05T09:00:00Z", "ends_at": "2026-07-05T10:00:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "25.00", "base_price": "25.00", "status": "open", "resource": { "id": 81, "name": "Room B", "category": "room" } },
+      { "id": 242, "reservation_type_id": 8, "starts_at": "2026-07-05T11:00:00Z", "ends_at": "2026-07-05T12:00:00Z", "capacity": 1, "remaining_capacity": 1, "is_fully_booked": false, "price": "25.00", "base_price": "25.00", "status": "open", "resource": { "id": 81, "name": "Room B", "category": "room" } }
+    ],
+    "aurora-symphonic": [
+      { "id": 261, "reservation_type_id": 9, "starts_at": "2026-07-19T19:30:00Z", "ends_at": "2026-07-19T22:00:00Z", "capacity": 600, "remaining_capacity": 214, "is_fully_booked": false, "price": "65.00", "base_price": "65.00", "status": "open", "resource": { "id": 91, "name": "Grand Hall", "category": "venue" } }
+    ],
+    "sora": [
+      { "id": 301, "reservation_type_id": 10, "starts_at": "2026-07-06T18:00:00Z", "ends_at": "2026-07-06T20:00:00Z", "capacity": 40, "remaining_capacity": 12, "is_fully_booked": false, "price": "95.00", "base_price": "95.00", "status": "open", "resource": { "id": 101, "name": "Terrace", "category": "table" } },
+      { "id": 302, "reservation_type_id": 10, "starts_at": "2026-07-07T20:30:00Z", "ends_at": "2026-07-07T22:30:00Z", "capacity": 40, "remaining_capacity": 24, "is_fully_booked": false, "price": "95.00", "base_price": "95.00", "status": "open", "resource": { "id": 101, "name": "Terrace", "category": "table" } }
+    ],
+    "the-larder": [
+      { "id": 321, "reservation_type_id": 11, "starts_at": "2026-07-05T09:00:00Z", "ends_at": "2026-07-05T10:30:00Z", "capacity": 30, "remaining_capacity": 18, "is_fully_booked": false, "price": "28.00", "base_price": "28.00", "status": "open", "resource": { "id": 111, "name": "Main room", "category": "table" } },
+      { "id": 322, "reservation_type_id": 11, "starts_at": "2026-07-05T11:00:00Z", "ends_at": "2026-07-05T12:30:00Z", "capacity": 30, "remaining_capacity": 9, "is_fully_booked": false, "price": "28.00", "base_price": "28.00", "status": "open", "resource": { "id": 111, "name": "Main room", "category": "table" } },
+      { "id": 323, "reservation_type_id": 11, "starts_at": "2026-07-06T10:00:00Z", "ends_at": "2026-07-06T11:30:00Z", "capacity": 30, "remaining_capacity": 27, "is_fully_booked": false, "price": "28.00", "base_price": "28.00", "status": "open", "resource": { "id": 111, "name": "Main room", "category": "table" } }
+    ],
+    "kettle-and-co": [
+      { "id": 341, "reservation_type_id": 12, "starts_at": "2026-07-05T18:00:00Z", "ends_at": "2026-07-05T19:00:00Z", "capacity": 10, "remaining_capacity": 3, "is_fully_booked": false, "price": "22.00", "base_price": "22.00", "status": "open", "resource": { "id": 121, "name": "The Counter", "category": "table" } },
+      { "id": 342, "reservation_type_id": 12, "starts_at": "2026-07-05T19:30:00Z", "ends_at": "2026-07-05T20:30:00Z", "capacity": 10, "remaining_capacity": 0, "is_fully_booked": true, "price": "22.00", "base_price": "22.00", "status": "open", "resource": { "id": 121, "name": "The Counter", "category": "table" } }
+    ],
+    "vero": [
+      { "id": 361, "reservation_type_id": 13, "starts_at": "2026-07-06T19:00:00Z", "ends_at": "2026-07-06T21:00:00Z", "capacity": 24, "remaining_capacity": 10, "is_fully_booked": false, "price": "60.00", "base_price": "60.00", "status": "open", "resource": { "id": 131, "name": "Dining room", "category": "table" } },
+      { "id": 362, "reservation_type_id": 13, "starts_at": "2026-07-09T20:00:00Z", "ends_at": "2026-07-09T22:00:00Z", "capacity": 24, "remaining_capacity": 16, "is_fully_booked": false, "price": "60.00", "base_price": "60.00", "status": "open", "resource": { "id": 131, "name": "Dining room", "category": "table" } }
+    ],
+    "garden-loft": [
+      { "id": 381, "reservation_type_id": 14, "starts_at": "2026-07-07T15:00:00Z", "ends_at": "2026-07-08T11:00:00Z", "capacity": 2, "remaining_capacity": 2, "is_fully_booked": false, "price": "150.00", "base_price": "150.00", "status": "open", "resource": { "id": 141, "name": "Garden Loft", "category": "room" } },
+      { "id": 382, "reservation_type_id": 14, "starts_at": "2026-07-14T15:00:00Z", "ends_at": "2026-07-15T11:00:00Z", "capacity": 2, "remaining_capacity": 1, "is_fully_booked": false, "price": "150.00", "base_price": "150.00", "status": "open", "resource": { "id": 141, "name": "Garden Loft", "category": "room" } }
+    ],
+    "midnight-cinema": [
+      { "id": 401, "reservation_type_id": 15, "starts_at": "2026-07-11T23:00:00Z", "ends_at": "2026-07-12T01:30:00Z", "capacity": 60, "remaining_capacity": 33, "is_fully_booked": false, "price": "18.00", "base_price": "18.00", "status": "open", "resource": { "id": 151, "name": "Rooftop", "category": "venue" } }
+    ]
+  },
+
+  "membership": {
+    "name": "Jordan Avery",
+    "email": "jordan@example.com",
+    "points": 2450,
+    "member_since": "2024-03-12",
+    "tier": "gold",
+    "discount_percent": 10,
+    "perks": ["10% off every reservation", "Priority waitlist", "Late checkout when available", "Birthday reward"],
+    "next_tier": "platinum",
+    "points_to_next": 550,
+    "progress_percent": 82,
+    "vouchers": [
+      { "code": "WELCOME15", "label": "Welcome gift", "description": "15% off your next booking", "discount_type": "percent", "discount_value": "15", "icon": "redeem", "color": "#A8873C", "expires_at": "2026-09-30" },
+      { "code": "STAY3FREE", "label": "3 nights, 1 free", "description": "Stay 3 nights, the 3rd is on us", "discount_type": "percent", "discount_value": "33", "icon": "hotel", "color": "#2E6E7E", "expires_at": "2026-12-31" },
+      { "code": "DINE25", "label": "Dining credit", "description": "$25 off dining reservations", "discount_type": "fixed", "discount_value": "25", "icon": "restaurant", "color": "#8C5A3B", "expires_at": "2026-08-31" }
+    ]
+  },
+
+  "user": { "id": 1, "name": "Jordan Avery", "email": "jordan@example.com", "role": "guest", "tier": "gold", "points": 2450 },
+
+  "reservations": [
+    {
+      "uuid": "res-1001-confirmed",
+      "reservation_number": "RSV-2026-1001",
+      "status": "confirmed",
+      "source": "web",
+      "customer_name": "Jordan Avery",
+      "currency": "USD",
+      "subtotal": "180.00",
+      "discount_total": "18.00",
+      "voucher_code": null,
+      "tax_total": "12.96",
+      "service_charge_total": "8.10",
+      "grand_total": "183.06",
+      "notes": "High floor if possible.",
+      "expires_at": null,
+      "confirmed_at": "2026-07-01T09:12:00Z",
+      "cancelled_at": null,
+      "created_at": "2026-07-01T09:10:00Z",
+      "reservation_type": { "id": 1, "name": "Deluxe King Suite", "slug": "deluxe-king-suite", "subtitle": "Aurora House · Harbour district", "color": "#A8873C", "reservation_mode": "stay", "allow_reschedule": true, "allow_cancellation": true, "category": { "key": "stays", "label": "Stays", "icon": "bed", "color": "#A8873C" } },
+      "items": [
+        { "id": 5001, "description": "Deluxe King Suite · 1 night", "starts_at": "2026-07-08T15:00:00Z", "ends_at": "2026-07-09T11:00:00Z", "quantity": 1, "unit_price": "180.00", "line_total": "180.00", "status": "active", "slot": { "id": 101, "starts_at": "2026-07-08T15:00:00Z", "ends_at": "2026-07-09T11:00:00Z", "capacity": 4, "remaining_capacity": 2, "is_fully_booked": false, "price": "180.00", "status": "open", "resource": { "id": 11, "name": "Suite 1802", "category": "room" } } }
+      ],
+      "payments": [
+        { "uuid": "pay-1001", "type": "payment", "method": "card", "status": "succeeded", "currency": "USD", "amount": "183.06", "paid_at": "2026-07-01T09:12:00Z" }
+      ]
+    },
+    {
+      "uuid": "res-1002-pending",
+      "reservation_number": "RSV-2026-1002",
+      "status": "pending_payment",
+      "source": "web",
+      "customer_name": "Jordan Avery",
+      "currency": "USD",
+      "subtotal": "240.00",
+      "discount_total": "24.00",
+      "voucher_code": "WELCOME15",
+      "tax_total": "17.28",
+      "service_charge_total": "21.60",
+      "grand_total": "254.88",
+      "notes": null,
+      "expires_at": "2026-07-05T10:00:00Z",
+      "confirmed_at": null,
+      "cancelled_at": null,
+      "created_at": "2026-07-04T08:30:00Z",
+      "reservation_type": { "id": 3, "name": "Nord", "slug": "nord", "subtitle": "Nord · Old Town", "color": "#8C5A3B", "reservation_mode": "table", "allow_reschedule": true, "allow_cancellation": true, "category": { "key": "dining", "label": "Dining", "icon": "restaurant", "color": "#8C5A3B" } },
+      "items": [
+        { "id": 5002, "description": "Tasting menu · 2 guests", "starts_at": "2026-07-06T18:00:00Z", "ends_at": "2026-07-06T20:30:00Z", "quantity": 2, "unit_price": "120.00", "line_total": "240.00", "status": "active", "slot": { "id": 141, "starts_at": "2026-07-06T18:00:00Z", "ends_at": "2026-07-06T20:30:00Z", "capacity": 16, "remaining_capacity": 6, "is_fully_booked": false, "price": "120.00", "status": "open", "resource": { "id": 31, "name": "The Counter", "category": "table" } } }
+      ],
+      "payments": []
+    },
+    {
+      "uuid": "res-1003-completed",
+      "reservation_number": "RSV-2026-0987",
+      "status": "completed",
+      "source": "web",
+      "customer_name": "Jordan Avery",
+      "currency": "USD",
+      "subtotal": "75.00",
+      "discount_total": "7.50",
+      "voucher_code": null,
+      "tax_total": "5.40",
+      "service_charge_total": "0.00",
+      "grand_total": "72.90",
+      "notes": null,
+      "expires_at": null,
+      "confirmed_at": "2026-06-20T10:00:00Z",
+      "cancelled_at": null,
+      "created_at": "2026-06-18T14:22:00Z",
+      "reservation_type": { "id": 5, "name": "Maison Coif", "slug": "maison-coif", "subtitle": "Maison Coif · Rue Blanc", "color": "#7A4A6D", "reservation_mode": "appointment", "allow_reschedule": true, "allow_cancellation": true, "category": { "key": "salon", "label": "Salon & Spa", "icon": "spa", "color": "#7A4A6D" } },
+      "items": [
+        { "id": 5003, "description": "Cut & finish", "starts_at": "2026-06-25T10:00:00Z", "ends_at": "2026-06-25T11:00:00Z", "quantity": 1, "unit_price": "75.00", "line_total": "75.00", "status": "active", "slot": { "id": 180, "starts_at": "2026-06-25T10:00:00Z", "ends_at": "2026-06-25T11:00:00Z", "capacity": 1, "remaining_capacity": 0, "is_fully_booked": true, "price": "75.00", "status": "open", "resource": { "id": 51, "name": "Chair 2", "category": "stylist" } } }
+      ],
+      "payments": [
+        { "uuid": "pay-1003", "type": "payment", "method": "cash", "status": "succeeded", "currency": "USD", "amount": "72.90", "paid_at": "2026-06-25T11:05:00Z" }
+      ]
+    },
+    {
+      "uuid": "res-1004-cancelled",
+      "reservation_number": "RSV-2026-0955",
+      "status": "cancelled",
+      "source": "web",
+      "customer_name": "Jordan Avery",
+      "currency": "USD",
+      "subtotal": "90.00",
+      "discount_total": "0.00",
+      "voucher_code": null,
+      "tax_total": "7.20",
+      "service_charge_total": "0.00",
+      "grand_total": "97.20",
+      "notes": null,
+      "expires_at": null,
+      "confirmed_at": "2026-06-10T09:00:00Z",
+      "cancelled_at": "2026-06-12T18:30:00Z",
+      "created_at": "2026-06-09T16:40:00Z",
+      "reservation_type": { "id": 6, "name": "Thermal Spa Circuit", "slug": "thermal-spa", "subtitle": "Lumière Care · Thermal wing", "color": "#7A4A6D", "reservation_mode": "appointment", "allow_reschedule": true, "allow_cancellation": true, "category": { "key": "salon", "label": "Salon & Spa", "icon": "spa", "color": "#7A4A6D" } },
+      "items": [
+        { "id": 5004, "description": "Thermal circuit · 1 guest", "starts_at": "2026-06-15T13:00:00Z", "ends_at": "2026-06-15T15:00:00Z", "quantity": 1, "unit_price": "90.00", "line_total": "90.00", "status": "cancelled", "slot": { "id": 200, "starts_at": "2026-06-15T13:00:00Z", "ends_at": "2026-06-15T15:00:00Z", "capacity": 8, "remaining_capacity": 8, "is_fully_booked": false, "price": "90.00", "status": "open", "resource": { "id": 61, "name": "Thermal Circuit", "category": "spa" } } }
+      ],
+      "payments": [
+        { "uuid": "pay-1004", "type": "refund", "method": "card", "status": "succeeded", "currency": "USD", "amount": "97.20", "paid_at": "2026-06-12T18:35:00Z" }
+      ]
+    }
+  ]
+}

@@ -63,6 +63,9 @@ export function ScheduleCalendar({ lockedType }: ScheduleCalendarProps) {
       .catch(() => setError("The schedule couldn't load. Try again."));
   }, [cursor, filter, lockedType]);
 
+  // Re-fetches the month's slots (and shows the skeleton) when the cursor or
+  // filter changes — a data-fetch sync effect.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(load, [load]);
 
   const colorBySlug = useMemo(() => {

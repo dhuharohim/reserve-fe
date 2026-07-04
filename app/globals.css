@@ -1,30 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  /* Ivory, ink, antique gold — luxury editorial */
+  /* Réserve concierge — warm oklch neutrals + antique-gold default accent */
   --paper: #faf7f0;
-  --surface: #ffffff;
-  --ink: #0e0d0b;
+  --surface: #fffdf9;
+  --panel: #f4f1ea;
+  --ink: #2a2622;
   --muted: #6e675c;
   --line: #e7e0d2;
   --accent: #a8873c;
+  --accent-deep: #7c6326;
+  --accent-tint: #f2ead9;
   --champagne: #d4b36a;
   --danger: #8c2f2f;
+  --r: 16px;
+  --r-sm: 11px;
+  /* shadcn / cult-ui component tokens, mapped to the Réserve palette. */
+  --foreground: var(--ink);
+  --radius: var(--r-sm);
+  /* Luxury form-field surface + focus glow (warm accent wash, soft ring). */
+  --field-bg: color-mix(in oklch, var(--accent-tint), var(--surface) 58%);
+  --field-glow: 0 0 0 3px color-mix(in oklch, var(--accent), transparent 84%);
+  --field-glow-danger: 0 0 0 3px color-mix(in oklch, var(--danger), transparent 84%);
+  --panel-art: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22160%22%20viewBox%3D%220%200%20160%20160%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23a8873c%22%20stroke-opacity%3D%220.18%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M-20%2044%20C%2020%2012%2052%2076%2092%2044%20S%20168%2012%20188%2044%22%2F%3E%3Cpath%20d%3D%22M-20%2096%20C%2020%2064%2052%20128%2092%2096%20S%20168%2064%20188%2096%22%2F%3E%3Cpath%20d%3D%22M44%20-20%20C%2012%2020%2076%2052%2044%2092%20S%2012%20168%2044%20188%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --panel-lux: var(--panel-art),
+    linear-gradient(
+      155deg,
+      color-mix(in oklch, var(--accent), var(--surface) 78%),
+      var(--surface) 58%
+    );
+  --panel-border: color-mix(in oklch, var(--accent), var(--line) 60%);
+  /* Motion tokens — mirror lib/motion.ts (single source of truth for timing). */
+  --dur-fast: 120ms;
+  --dur-normal: 250ms;
+  --dur-medium: 450ms;
+  --dur-page: 650ms;
+  --dur-hero: 900ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @theme inline {
   --color-paper: var(--paper);
   --color-surface: var(--surface);
+  --color-panel: var(--panel);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-ink-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-tint: var(--accent-tint);
   --color-champagne: var(--champagne);
   --color-danger: var(--danger);
-  --font-sans: var(--font-archivo);
-  --font-mono: var(--font-plex-mono);
-  --font-display: var(--font-fraunces);
+  /* shadcn / cult-ui semantic tokens → Réserve palette. */
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--accent);
+  --color-primary: var(--accent-deep);
+  --color-primary-foreground: #ffffff;
+  --font-sans: var(--font-instrument);
+  --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-cormorant);
 }
 
 body {
@@ -101,6 +144,418 @@ body {
   animation: marquee-scroll 32s linear infinite;
 }
 
+/* ── Epic 2.5D depth system (landing hero) ──────────────────────
+   Six-tier composition: far bg (grid-paper) · atmospheric glow ·
+   geometric decoration · hero plate · interface · foreground FX.
+   Parallax is driven by GSAP on scroll; ambient floats live here.
+   All decorative layers are aria-hidden and reduced-motion safe. */
+
+.depth-scene {
+  position: relative;
+  overflow: hidden;
+}
+
+.depth-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Depth 1 — atmospheric gold bloom */
+.glow-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.glow-blob--a {
+  top: -8rem;
+  right: -6rem;
+  width: 34rem;
+  height: 34rem;
+  background: radial-gradient(circle, rgba(212, 179, 106, 0.5) 0%, transparent 70%);
+  animation: float-breathe 12s ease-in-out infinite;
+}
+
+.glow-blob--b {
+  bottom: -10rem;
+  left: -5rem;
+  width: 26rem;
+  height: 26rem;
+  background: radial-gradient(circle, rgba(168, 135, 60, 0.32) 0%, transparent 70%);
+  animation: float-orbit 24s ease-in-out infinite;
+}
+
+/* Depth 2 — geometric gold-hairline decoration */
+.deco {
+  position: absolute;
+  will-change: transform;
+}
+
+.deco--ring {
+  top: 10%;
+  left: -5rem;
+  width: 18rem;
+  height: 18rem;
+  border: 1px solid rgba(168, 135, 60, 0.35);
+  border-radius: 9999px;
+  animation: float-orbit 28s ease-in-out infinite;
+}
+
+.deco--square {
+  right: 7%;
+  bottom: 12%;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid rgba(168, 135, 60, 0.4);
+  animation: float-rotate 18s ease-in-out infinite;
+}
+
+.deco--rule {
+  top: 28%;
+  right: 0;
+  width: 42%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(168, 135, 60, 0.5),
+    transparent
+  );
+  animation: float-y 14s ease-in-out infinite;
+}
+
+/* Softer ambient gold accent for interior page headers */
+.page-glow {
+  position: absolute;
+  top: -11rem;
+  right: -6rem;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(212, 179, 106, 0.34) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  animation: float-breathe 14s ease-in-out infinite;
+}
+
+.page-glow--left {
+  right: auto;
+  left: -7rem;
+  top: auto;
+  bottom: -12rem;
+  background: radial-gradient(circle, rgba(168, 135, 60, 0.3) 0%, transparent 70%);
+}
+
+/* Depth 5 — foreground gold particles */
+.fx-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #c6a15b;
+  box-shadow: 0 0 8px rgba(198, 161, 91, 0.8);
+  opacity: 0.7;
+  will-change: transform;
+  animation: float-y 8s ease-in-out infinite;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-rotate {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes float-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.68;
+  }
+}
+
+@keyframes float-orbit {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(14px, -14px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0, -22px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-14px, -14px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+/* ── Réserve concierge design scope (Claude Design import) ───────
+   Applied via the .rz class on the booking screen. Warm oklch
+   neutrals, per-category accent derived from the reservation type's
+   colour, Cormorant / Instrument / JetBrains / Material Symbols. */
+.rz {
+  --rz-paper: oklch(0.98 0.006 85);
+  --rz-surface: oklch(0.995 0.004 85);
+  --rz-panel: oklch(0.972 0.006 82);
+  --rz-ink: oklch(0.26 0.015 60);
+  --rz-ink-2: oklch(0.5 0.012 60);
+  --rz-ink-3: oklch(0.6 0.01 60);
+  --rz-line: oklch(0.9 0.008 74);
+  --rz-line-2: oklch(0.93 0.006 78);
+  --r: 16px;
+  --r-sm: 11px;
+  /* --accent defaults to the gold brand; category pages set it inline. */
+  --accent: #a8873c;
+  --accent-deep: color-mix(in oklch, var(--accent), black 24%);
+  --accent-tint: color-mix(in oklch, var(--accent), white 90%);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  color: var(--rz-ink);
+}
+
+.rz-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.rz-mono {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+/* Material Symbols Rounded icon */
+.ms {
+  font-family: "Material Symbols Rounded";
+  font-weight: 300;
+  font-variation-settings: "wght" 300;
+  line-height: 1;
+  font-size: 20px;
+  user-select: none;
+}
+
+.ms-fill {
+  font-variation-settings: "wght" 300, "FILL" 1;
+}
+
+@keyframes rz-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rz-step-in {
+  animation: rz-step-in 0.4s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes rz-check-pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.rz-check-pop {
+  animation: rz-check-pop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+/* Page transition — an easy wipe reveal on every route change. */
+.rz-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: var(--paper);
+  transform-origin: left center;
+  animation: rz-wipe 0.62s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes rz-wipe {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+.rz-page-content {
+  animation: rz-page-in var(--dur-page) var(--ease-out) both;
+  animation-delay: 0.05s;
+}
+
+@keyframes rz-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Lenis smooth-scroll base (required, else the page can't scroll). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Shared popover / dropdown motion (scale + fade) for every overlay component. */
+.rz-pop-anim {
+  transform-origin: var(--radix-popover-content-transform-origin, center);
+}
+
+.rz-pop-anim[data-state="open"],
+.rz-pop-anim[data-state="delayed-open"],
+.rz-pop-anim[data-state="instant-open"] {
+  animation: rz-pop-in var(--dur-normal) var(--ease-out);
+}
+
+.rz-pop-anim[data-state="closed"] {
+  animation: rz-pop-out 140ms var(--ease-out) forwards;
+}
+
+@keyframes rz-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rz-pop-out {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+/* Shared validation helper transition (error/success text slides in). */
+.rz-field-msg {
+  animation: rz-field-msg var(--dur-normal) var(--ease-out);
+}
+
+@keyframes rz-field-msg {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rz-shake {
+  animation: rz-shake 0.4s var(--ease-in-out);
+}
+
+@keyframes rz-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+/* Skeleton shimmer — animates background-position only (no layout, no paint of shadow). */
+.rz-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--panel) 28%,
+    color-mix(in oklch, var(--line), white 45%) 48%,
+    var(--panel) 68%
+  );
+  background-size: 220% 100%;
+  animation: rz-shimmer 1.4s linear infinite;
+}
+
+@keyframes rz-shimmer {
+  from {
+    background-position: 220% 0;
+  }
+  to {
+    background-position: -220% 0;
+  }
+}
+
+/* Native view-transition tuning (shared-element + page morphs). */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(root) {
+    animation-duration: var(--dur-page);
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-timing-function: var(--ease-out);
+  }
+  ::view-transition-group(venue-hero) {
+    animation-duration: 560ms;
+    animation-timing-function: var(--ease-out);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -110,7 +565,26 @@ body {
   }
 
   .rf-fade-up,
-  .marquee-track {
+  .marquee-track,
+  .glow-blob,
+  .deco,
+  .fx-particle,
+  .page-glow,
+  .rz-step-in,
+  .rz-check-pop,
+  .rz-page-content {
     animation: none;
+  }
+
+  .rz-wipe,
+  .rz-shimmer,
+  .rz-pop-anim,
+  .rz-field-msg,
+  .rz-shake {
+    animation: none;
+  }
+
+  .rz-shimmer {
+    background: var(--panel);
   }
 }

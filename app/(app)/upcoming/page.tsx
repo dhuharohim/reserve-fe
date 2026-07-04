@@ -7,6 +7,7 @@ export default function UpcomingPage() {
   return (
     <ReservationLedger
       mode="upcoming"
+      eyebrow="Your reservations"
       title="Upcoming."
       emptyTitle="Nothing coming up"
       emptyDescription="When you reserve a seat it appears here, with its status and payment window."
