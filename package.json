@@ -26,8 +26,8 @@
     "motion": "^12.42.2",
     "next": "16.2.10",
     "qrcode.react": "^4.2.0",
-    "react": "^0.0.0-experimental-e71a6393-20260702",
-    "react-dom": "^0.0.0-experimental-e71a6393-20260702",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

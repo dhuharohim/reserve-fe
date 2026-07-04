@@ -17,6 +17,8 @@ import {
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Pressable } from "@/components/motion/pressable";
 import { ViewTransition } from "@/lib/vt";
+import { MorphLink } from "@/components/motion/morph-link";
+import { MorphReplay } from "@/components/motion/morph-replay";
 
 export const dynamic = "force-dynamic";
 
@@ -52,6 +54,7 @@ export default async function CategoryPage({ params }: PageProps) {
     <div className="rz" style={accentVars(category.color)}>
       {/* hero band */}
       <section className="relative -mt-[68px] h-[42vw] max-h-[440px] min-h-[320px] overflow-hidden">
+        <MorphReplay id={`category-${category.key}`} />
         {category.hero_image_url && (
           <ViewTransition name={`category-${category.key}`} share="morph">
             <Image
@@ -60,6 +63,7 @@ export default async function CategoryPage({ params }: PageProps) {
               fill
               priority
               sizes="100vw"
+              data-flip-id={`category-${category.key}`}
               className="object-cover"
             />
           </ViewTransition>
@@ -143,13 +147,14 @@ export default async function CategoryPage({ params }: PageProps) {
             {types.map((type) => (
               <StaggerItem key={type.id}>
                 <CutoutCard className={cn(cutoutCardSurfaceClassName, "flex flex-col p-3")}>
-                  <Link href={`/reservations/${type.slug}`} className="block">
+                  <MorphLink morphId={`venue-${type.slug}`} href={`/reservations/${type.slug}`} className="block">
                     <CutoutCardMedia className="h-64 overflow-hidden rounded-[20px] bg-panel">
                       {type.hero_image_url && (
                         <ViewTransition name={`venue-${type.slug}`} share="morph">
                           <CutoutCardImage
                             src={type.hero_image_url}
                             alt={type.name}
+                            data-flip-id={`venue-${type.slug}`}
                             sizes="(max-width: 1024px) 100vw, 33vw"
                           />
                         </ViewTransition>
@@ -166,13 +171,15 @@ export default async function CategoryPage({ params }: PageProps) {
 
                       {/* name — panel carved into the bottom-left, sharing the card surface */}
                       <CutoutCardInsetLabel className="bottom-0 left-0 max-w-[86%] rounded-bl-[20px] rounded-tr-[20px] bg-card px-4 py-3">
-                        <div className="rz-serif truncate text-xl font-semibold leading-tight text-ink">
-                          {type.name}
-                        </div>
+                        <ViewTransition name={`title-venue-${type.slug}`} share="morph-text">
+                          <div className="rz-serif truncate text-xl font-semibold leading-tight text-ink">
+                            {type.name}
+                          </div>
+                        </ViewTransition>
                         <div className="truncate text-xs text-muted">{type.subtitle}</div>
                       </CutoutCardInsetLabel>
                     </CutoutCardMedia>
-                  </Link>
+                  </MorphLink>
 
                   <div className="flex items-center justify-between gap-3 px-2 pb-1 pt-3">
                     <span className="rz-mono text-xs text-muted">

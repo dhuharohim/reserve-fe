@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Ms } from "@/components/icon";
 import { ViewTransition } from "@/lib/vt";
+import { captureMorph } from "@/lib/morph";
 
 /** The minimal shape an experience card renders — a ReservationType satisfies it. */
 export interface ExperienceItem {
@@ -48,6 +49,7 @@ export function ExperienceCard({
       src={type.hero_image_url}
       alt={type.name}
       fill
+      data-flip-id={vtName}
       sizes={wide ? "(max-width:1024px) 100vw, 66vw" : "(max-width:1024px) 80vw, 30vw"}
       className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-[1.06]"
     />
@@ -55,7 +57,12 @@ export function ExperienceCard({
 
   return (
     <div className={`group relative isolate overflow-hidden rounded-[var(--r)] bg-panel ${className ?? ""}`}>
-      <Link href={`/reservations/${type.slug}`} className="absolute inset-0 z-10" aria-label={type.name} />
+      <Link
+        href={`/reservations/${type.slug}`}
+        onClick={vtName ? () => captureMorph(vtName) : undefined}
+        className="absolute inset-0 z-10"
+        aria-label={type.name}
+      />
       {vtName ? (
         <ViewTransition name={vtName} share="morph">
           {image}
@@ -85,9 +92,17 @@ export function ExperienceCard({
 
       {/* bottom content */}
       <div className={`absolute inset-x-0 bottom-0 z-10 p-4 ${wide ? "sm:p-6" : ""}`}>
-        <h3 className={`rz-serif font-semibold leading-tight text-white ${wide ? "text-3xl sm:text-4xl" : "text-xl"}`}>
-          {type.name}
-        </h3>
+        {vtName ? (
+          <ViewTransition name={`title-${vtName}`} share="morph-text">
+            <h3 className={`rz-serif font-semibold leading-tight text-white ${wide ? "text-3xl sm:text-4xl" : "text-xl"}`}>
+              {type.name}
+            </h3>
+          </ViewTransition>
+        ) : (
+          <h3 className={`rz-serif font-semibold leading-tight text-white ${wide ? "text-3xl sm:text-4xl" : "text-xl"}`}>
+            {type.name}
+          </h3>
+        )}
         <p className="mt-0.5 line-clamp-1 text-[12.5px] text-white/80">{type.subtitle}</p>
 
         <div className="mt-2.5 flex items-center gap-3 text-[12px] text-white/90">

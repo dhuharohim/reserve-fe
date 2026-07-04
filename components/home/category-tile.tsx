@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { Category } from "@/lib/types";
 import { Ms } from "@/components/icon";
 import { ViewTransition } from "@/lib/vt";
+import { captureMorph } from "@/lib/morph";
 
 export interface CategoryMeta {
   count: number;
@@ -26,6 +29,7 @@ export function CategoryTile({
   return (
     <Link
       href={`/c/${category.key}`}
+      onClick={() => captureMorph(`category-${category.key}`)}
       aria-label={category.label}
       className={`group relative block overflow-hidden rounded-[var(--r)] bg-panel transition-[box-shadow] duration-300 hover:shadow-[0_30px_56px_-30px_rgba(30,20,10,0.6)] ${className ?? ""}`}
     >
@@ -35,6 +39,7 @@ export function CategoryTile({
           src={category.hero_image_url}
           alt={category.label}
           fill
+          data-flip-id={`category-${category.key}`}
           sizes="(max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-[1.07]"
         />

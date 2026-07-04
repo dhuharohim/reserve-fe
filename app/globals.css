@@ -553,28 +553,59 @@ html.lenis body {
 
 /* Native view-transition tuning (shared card↔hero morph + page fade). */
 @media (prefers-reduced-motion: no-preference) {
-  /* page crossfade sits UNDER the morph — quick + soft so it doesn't distract */
-  ::view-transition-old(root),
+  /* surrounding page recedes + fades so the detail reads as coming forward —
+     this is the "fade surrounding cards" beat */
+  ::view-transition-old(root) {
+    animation: rz-vt-recede 440ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
   ::view-transition-new(root) {
-    animation-duration: 340ms;
-    animation-timing-function: var(--ease-out);
+    animation: rz-vt-emerge 440ms cubic-bezier(0.2, 0, 0, 1) both;
   }
 
-  /* the shared thumbnail ↔ hero image (share="morph"); works both directions,
-     so Back reverses it into a zoom-out automatically */
+  /* shared thumbnail ↔ hero IMAGE (share="morph"); a slow expo-out glide, both
+     directions so Back reverses it into a zoom-out automatically */
   ::view-transition-group(.morph) {
-    animation-duration: 560ms;
-    animation-timing-function: cubic-bezier(0.33, 0, 0.15, 1);
-    /* keep the morphing image above the page crossfade */
-    z-index: 5;
+    animation-duration: 640ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 20; /* ride above the page fade the whole way */
   }
-  /* same photo captured at two sizes — cover the morphing box so it never
-     squashes as the aspect ratio changes between thumbnail and hero */
+  /* same photo at two sizes — cover the morphing box so it never squashes */
   ::view-transition-old(.morph),
   ::view-transition-new(.morph) {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    animation-duration: 640ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* whisper of a focus-pull at mid-flight — an intentional glide, not a swap */
+  ::view-transition-image-pair(.morph) {
+    animation: rz-morph-focus 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* shared card ↔ hero TITLE (share="morph-text"); no object-fit so the text
+     never stretches — settles just before the image lands */
+  ::view-transition-group(.morph-text) {
+    animation-duration: 560ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 21;
+  }
+}
+
+@keyframes rz-morph-focus {
+  45% {
+    filter: blur(1.5px) saturate(1.04);
+  }
+}
+@keyframes rz-vt-recede {
+  to {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+@keyframes rz-vt-emerge {
+  from {
+    opacity: 0;
   }
 }
 

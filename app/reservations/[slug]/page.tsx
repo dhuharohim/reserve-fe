@@ -8,6 +8,7 @@ import { Pressable } from "@/components/motion/pressable";
 import { GalleryTrigger } from "@/components/gallery";
 import { RecordView } from "@/components/home/record-view";
 import { ViewTransition } from "@/lib/vt";
+import { MorphReplay } from "@/components/motion/morph-replay";
 
 export const dynamic = "force-dynamic";
 
@@ -52,6 +53,7 @@ export default async function ReservationTypePage({ params }: PageProps) {
       />
       {/* hero */}
       <section className="relative -mt-[68px] h-[44vw] max-h-[480px] min-h-[340px] overflow-hidden">
+        <MorphReplay id={`venue-${slug}`} />
         {type.hero_image_url && (
           <ViewTransition name={`venue-${slug}`} share="morph">
             <Image
@@ -60,6 +62,7 @@ export default async function ReservationTypePage({ params }: PageProps) {
               fill
               priority
               sizes="100vw"
+              data-flip-id={`venue-${slug}`}
               className="object-cover"
             />
           </ViewTransition>
@@ -89,9 +92,11 @@ export default async function ReservationTypePage({ params }: PageProps) {
                 {type.rating} · {type.reviews_count.toLocaleString()} reviews
               </span>
             </div>
-            <h1 className="rz-serif text-4xl font-semibold leading-none text-white sm:text-6xl">
-              {type.name}
-            </h1>
+            <ViewTransition name={`title-venue-${slug}`} share="morph-text">
+              <h1 className="rz-serif text-4xl font-semibold leading-none text-white sm:text-6xl">
+                {type.name}
+              </h1>
+            </ViewTransition>
             <p className="mt-2 text-[15px] text-white/90">{type.subtitle}</p>
           </div>
         </div>
