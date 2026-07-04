@@ -25,8 +25,11 @@ export function startViewTransition(update: () => void | Promise<void>): void {
   document.startViewTransition(update);
 }
 
-/** The single shared morph name used for card→detail hero transitions. */
+/** Shared morph name for experience-card → venue-detail hero transitions. */
 export const HERO_VT_NAME = "venue-hero";
+
+/** Shared morph name for category-tile → category-page hero transitions. */
+export const CATEGORY_VT_NAME = "category-hero";
 
 /** Name a shared element (e.g. the detail hero) so it morphs from its source. */
 export function vtName(name: string): CSSProperties {

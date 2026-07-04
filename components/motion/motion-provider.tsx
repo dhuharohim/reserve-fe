@@ -1,9 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { MotionConfig } from "motion/react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "./gsap";
+
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
 
 /**
  * Global motion runtime: Lenis smooth scroll wired to the GSAP ticker +
@@ -12,6 +19,14 @@ import { gsap, ScrollTrigger } from "./gsap";
  * DOM — Lenis drives window scroll directly.
  */
 export function MotionProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  // Always land at the top of a newly-opened page.
+  useEffect(() => {
+    if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
@@ -22,6 +37,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       wheelMultiplier: 1.05,
       touchMultiplier: 1.6,
     });
+    window.__lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -55,6 +71,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       document.removeEventListener("click", onClick);
       gsap.ticker.remove(onRaf);
       lenis.destroy();
+      window.__lenis = undefined;
     };
   }, []);
 

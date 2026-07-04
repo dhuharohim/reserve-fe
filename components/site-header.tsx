@@ -77,8 +77,9 @@ export function SiteHeader() {
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           <NavItem href="/" label="Home" active={pathname === "/"} />
           <CategoriesMenu categories={categories} />
+          <NavItem href="/guides" label="Guides" active={pathname === "/guides"} />
           <NavItem href="/faq" label="FAQ" active={pathname === "/faq"} />
-          <NavItem href="/terms" label="Terms & Conditions" active={pathname === "/terms"} />
+          <NavItem href="/terms" label="Terms" active={pathname === "/terms"} />
         </nav>
 
         <div className="flex items-center gap-2">
@@ -135,6 +136,7 @@ export function SiteHeader() {
         <nav aria-label="Primary" className="mb-3 flex flex-col gap-0.5 border-b border-line pb-3">
           {[
             { href: "/", label: "Home" },
+            { href: "/guides", label: "Guides & Stories" },
             { href: "/faq", label: "FAQ" },
             { href: "/terms", label: "Terms & Conditions" },
           ].map((item) => (

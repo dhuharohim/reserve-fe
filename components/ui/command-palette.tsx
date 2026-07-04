@@ -52,7 +52,7 @@ export function CommandPalette({ categories }: { categories: Category[] }) {
   }
 
   const item = (icon: string | null, label: string, href: string) => (
-    <CommandItem key={href} value={label} onSelect={() => go(href)}>
+    <CommandItem key={`${href}:${label}`} value={label} onSelect={() => go(href)}>
       {icon && <Ms name={icon} style={{ fontSize: 18 }} className="text-muted" />}
       <span className="flex-1">{label}</span>
       <Ms name="arrow_forward" style={{ fontSize: 15 }} className="text-muted" />
@@ -90,6 +90,7 @@ export function CommandPalette({ categories }: { categories: Category[] }) {
                 <CommandEmpty>No results.</CommandEmpty>
                 <CommandGroup heading={<Heading>Go to</Heading>}>
                   {item("home", "Home", "/")}
+                  {item("menu_book", "Guides & Stories", "/guides")}
                   {item("person", "My profile", "/profile")}
                   {item("confirmation_number", "My reservations", "/profile")}
                 </CommandGroup>

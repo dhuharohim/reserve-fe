@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Ms } from "@/components/icon";
+import { ViewTransition } from "@/lib/vt";
 
 /** The minimal shape an experience card renders — a ReservationType satisfies it. */
 export interface ExperienceItem {
@@ -32,25 +33,35 @@ export function ExperienceCard({
   type,
   className,
   wide = false,
+  vtName,
 }: {
   type: ExperienceItem;
   className?: string;
   wide?: boolean;
+  /** When set, the image morphs into the destination hero with this name. */
+  vtName?: string;
 }) {
   const [saved, setSaved] = useState(false);
+
+  const image = type.hero_image_url && (
+    <Image
+      src={type.hero_image_url}
+      alt={type.name}
+      fill
+      sizes={wide ? "(max-width:1024px) 100vw, 66vw" : "(max-width:1024px) 80vw, 30vw"}
+      className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-[1.06]"
+    />
+  );
 
   return (
     <div className={`group relative isolate overflow-hidden rounded-[var(--r)] bg-panel ${className ?? ""}`}>
       <Link href={`/reservations/${type.slug}`} className="absolute inset-0 z-10" aria-label={type.name} />
-
-      {type.hero_image_url && (
-        <Image
-          src={type.hero_image_url}
-          alt={type.name}
-          fill
-          sizes={wide ? "(max-width:1024px) 100vw, 66vw" : "(max-width:1024px) 80vw, 30vw"}
-          className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-[1.06]"
-        />
+      {vtName ? (
+        <ViewTransition name={vtName} share="morph">
+          {image}
+        </ViewTransition>
+      ) : (
+        image
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/35 transition-opacity duration-300 group-hover:from-black/70" />
 

@@ -1,9 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import type { Category } from "@/lib/types";
 import { Ms } from "@/components/icon";
+import { ViewTransition } from "@/lib/vt";
 
 export interface CategoryMeta {
   count: number;
@@ -27,9 +26,11 @@ export function CategoryTile({
   return (
     <Link
       href={`/c/${category.key}`}
+      aria-label={category.label}
       className={`group relative block overflow-hidden rounded-[var(--r)] bg-panel transition-[box-shadow] duration-300 hover:shadow-[0_30px_56px_-30px_rgba(30,20,10,0.6)] ${className ?? ""}`}
     >
       {category.hero_image_url && (
+        <ViewTransition name={`category-${category.key}`} share="morph">
         <Image
           src={category.hero_image_url}
           alt={category.label}
@@ -37,6 +38,7 @@ export function CategoryTile({
           sizes="(max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-[1.07]"
         />
+        </ViewTransition>
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/25 transition-colors duration-300 group-hover:from-black/70" />
 

@@ -11,7 +11,6 @@ import { AuthProvider } from "@/lib/auth";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { ToastProvider } from "@/components/motion/toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { SplashScreen } from "@/components/splash-screen";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
@@ -81,7 +80,6 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col">
-        <SplashScreen />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
@@ -93,7 +91,7 @@ export default function RootLayout({
             <ToastProvider>
               <TooltipProvider delayDuration={250}>
                 <SiteHeader />
-                <main id="main" className="flex-1 pt-[68px]">
+                <main id="main" className="flex-1 overflow-x-clip pt-[68px]">
                   {children}
                 </main>
                 <SiteFooter />

@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { Pressable } from "@/components/motion/pressable";
 import { GalleryTrigger } from "@/components/gallery";
 import { RecordView } from "@/components/home/record-view";
-import { HERO_VT_NAME, vtName } from "@/lib/view-transition";
+import { ViewTransition } from "@/lib/vt";
 
 export const dynamic = "force-dynamic";
 
@@ -53,15 +53,16 @@ export default async function ReservationTypePage({ params }: PageProps) {
       {/* hero */}
       <section className="relative -mt-[68px] h-[44vw] max-h-[480px] min-h-[340px] overflow-hidden">
         {type.hero_image_url && (
-          <Image
-            src={type.hero_image_url}
-            alt={type.name}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-            style={vtName(HERO_VT_NAME)}
-          />
+          <ViewTransition name={`venue-${slug}`} share="morph">
+            <Image
+              src={type.hero_image_url}
+              alt={type.name}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          </ViewTransition>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/50" />
         <GalleryTrigger

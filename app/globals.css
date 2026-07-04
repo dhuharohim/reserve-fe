@@ -84,6 +84,16 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Form fields carry their own focus treatment (glow / ring on the shell) — the
+   global gold outline reads as an ugly double border on them, so opt them out. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[contenteditable]:focus-visible {
+  outline: none;
 }
 
 /* Metallic gold — hairlines and numerals only, never large fills */
@@ -541,18 +551,30 @@ html.lenis body {
   }
 }
 
-/* Native view-transition tuning (shared-element + page morphs). */
+/* Native view-transition tuning (shared card↔hero morph + page fade). */
 @media (prefers-reduced-motion: no-preference) {
-  ::view-transition-group(root) {
-    animation-duration: var(--dur-page);
-  }
+  /* page crossfade sits UNDER the morph — quick + soft so it doesn't distract */
   ::view-transition-old(root),
   ::view-transition-new(root) {
+    animation-duration: 340ms;
     animation-timing-function: var(--ease-out);
   }
-  ::view-transition-group(venue-hero) {
+
+  /* the shared thumbnail ↔ hero image (share="morph"); works both directions,
+     so Back reverses it into a zoom-out automatically */
+  ::view-transition-group(.morph) {
     animation-duration: 560ms;
-    animation-timing-function: var(--ease-out);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.15, 1);
+    /* keep the morphing image above the page crossfade */
+    z-index: 5;
+  }
+  /* same photo captured at two sizes — cover the morphing box so it never
+     squashes as the aspect ratio changes between thumbnail and hero */
+  ::view-transition-old(.morph),
+  ::view-transition-new(.morph) {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 

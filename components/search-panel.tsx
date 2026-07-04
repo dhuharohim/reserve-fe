@@ -84,7 +84,7 @@ export function SearchPanel({
     <div className="w-full">
       {/* search bar */}
       <div className="relative">
-        <div className="flex items-center gap-2 rounded-full bg-surface p-2 pl-5 shadow-[0_28px_70px_-26px_rgba(15,10,5,0.8)] ring-1 ring-black/[0.06]">
+        <div className="flex items-center gap-2 rounded-full bg-surface p-2 pl-5 shadow-[0_28px_70px_-26px_rgba(15,10,5,0.8)] ring-1 ring-black/[0.06] transition-shadow duration-200 focus-within:ring-2 focus-within:ring-[var(--accent)]/45">
           <Ms name="search" style={{ fontSize: 22, color: "var(--accent-deep)" }} />
           <input
             type="search"

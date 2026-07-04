@@ -12,13 +12,11 @@ import {
   CutoutCardMedia,
   CutoutCardOverlay,
   CutoutCardPin,
-  CutoutCorner,
   cutoutCardSurfaceClassName,
 } from "@/components/ui/cutout-card";
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Pressable } from "@/components/motion/pressable";
-import { TransitionLink } from "@/components/motion/transition-link";
-import { HERO_VT_NAME } from "@/lib/view-transition";
+import { ViewTransition } from "@/lib/vt";
 
 export const dynamic = "force-dynamic";
 
@@ -55,14 +53,16 @@ export default async function CategoryPage({ params }: PageProps) {
       {/* hero band */}
       <section className="relative -mt-[68px] h-[42vw] max-h-[440px] min-h-[320px] overflow-hidden">
         {category.hero_image_url && (
-          <Image
-            src={category.hero_image_url}
-            alt={category.label}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+          <ViewTransition name={`category-${category.key}`} share="morph">
+            <Image
+              src={category.hero_image_url}
+              alt={category.label}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          </ViewTransition>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/50" />
         <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-9 sm:px-6">
@@ -143,42 +143,36 @@ export default async function CategoryPage({ params }: PageProps) {
             {types.map((type) => (
               <StaggerItem key={type.id}>
                 <CutoutCard className={cn(cutoutCardSurfaceClassName, "flex flex-col p-3")}>
-                  <TransitionLink
-                    href={`/reservations/${type.slug}`}
-                    sharedName={HERO_VT_NAME}
-                    className="block"
-                  >
+                  <Link href={`/reservations/${type.slug}`} className="block">
                     <CutoutCardMedia className="h-64 overflow-hidden rounded-[20px] bg-panel">
                       {type.hero_image_url && (
-                        <CutoutCardImage
-                          src={type.hero_image_url}
-                          alt={type.name}
-                          sizes="(max-width: 1024px) 100vw, 33vw"
-                        />
+                        <ViewTransition name={`venue-${type.slug}`} share="morph">
+                          <CutoutCardImage
+                            src={type.hero_image_url}
+                            alt={type.name}
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                          />
+                        </ViewTransition>
                       )}
                       <CutoutCardOverlay className="rounded-[20px] from-black/55 via-black/10 to-transparent" />
 
-                      {/* rating — corner tab notched into the top-right */}
+                      {/* rating — corner tab carved into the top-right */}
                       <CutoutCardPin className="right-0 top-0">
-                        <div className="relative flex items-center gap-1 rounded-bl-[18px] bg-card px-3 py-1.5 text-[13px] font-semibold text-ink">
+                        <div className="flex items-center gap-1 rounded-bl-[18px] rounded-tr-[20px] bg-card px-3 py-1.5 text-[13px] font-semibold text-ink">
                           <Ms name="star" fill style={{ fontSize: 14, color: "var(--accent-deep)" }} />
                           {type.rating}
-                          <CutoutCorner className="absolute -left-[31px] top-0 -rotate-90 text-card" />
-                          <CutoutCorner className="absolute -bottom-[31px] right-0 -rotate-90 text-card" />
                         </div>
                       </CutoutCardPin>
 
-                      {/* name — inset label carved into the bottom-left */}
-                      <CutoutCardInsetLabel className="bottom-0 left-0 rounded-tr-[20px] bg-card px-4 py-3">
-                        <div className="rz-serif text-xl font-semibold leading-tight text-ink">
+                      {/* name — panel carved into the bottom-left, sharing the card surface */}
+                      <CutoutCardInsetLabel className="bottom-0 left-0 max-w-[86%] rounded-bl-[20px] rounded-tr-[20px] bg-card px-4 py-3">
+                        <div className="rz-serif truncate text-xl font-semibold leading-tight text-ink">
                           {type.name}
                         </div>
-                        <div className="text-xs text-muted">{type.subtitle}</div>
-                        <CutoutCorner className="absolute -bottom-px -right-[31px] rotate-90 text-card" />
-                        <CutoutCorner className="absolute -left-px -top-[31px] rotate-90 text-card" />
+                        <div className="truncate text-xs text-muted">{type.subtitle}</div>
                       </CutoutCardInsetLabel>
                     </CutoutCardMedia>
-                  </TransitionLink>
+                  </Link>
 
                   <div className="flex items-center justify-between gap-3 px-2 pb-1 pt-3">
                     <span className="rz-mono text-xs text-muted">
